@@ -144,4 +144,7 @@ bindkey '^g' ghq-fzf
 eval "$(atuin init zsh)"
 
 # zoxide init LAST (after starship + atuin) so its chpwd hook isn't clobbered → doctor clean.
+# _ZO_DOCTOR=0: hook IS present+last in steady state (verified), but async/deferred plugin
+# loading runs __zoxide_doctor on the first prompt before hooks settle → cosmetic false positive.
+export _ZO_DOCTOR=0
 eval "$(zoxide init zsh)"
